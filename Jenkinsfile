@@ -17,6 +17,7 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
+                sh 'docker rm -f client server mongodb || true'
                 sh 'docker compose down || true'
                 sh 'docker compose up --build -d'
             }
